@@ -1,5 +1,5 @@
 ====================================================================================
-/ Simple Shell Project by Dominic Kudom /
+/ Simple Shell Project by Dominic Kudom and Rosina Attoh
 
 General
 Who designed and implemented the original Unix operating system
