@@ -3,33 +3,57 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <unistd.h>
-#include <sys/types.h>
+#include <string.h>
 #include <sys/wait.h>
 #include <errno.h>
-#include <pwd.h>
 
-#define MAX_CMD_LENGTH 1024
-#define MAX_ARGS 64
-#define MAX_ENV_VARS 1000
-#define PATH_SEPARATOR ":"
+#define MAX_ENV_VARS 100
+#define MAX_INPUT_LENGTH 1024
 
-void execute_custom_command(const char * const arguments[]);
-int custom_strcmp(char *str1, char *str2);
-int custom_strlen(const char *str);
-ssize_t custom_getline(char *input, size_t max_length);
-char *get_full_executable_path(const char *command);
-char *custom_strcpy(char *destination, const char *source);
-char *custom_strcat(char *destination, const char *source);
-void handle_exit_command(char **input);
-int custom_atoi(char *str);
-int custom_strncmp(const char *str1, const char *str2, size_t n);
+extern int num_custom_env_vars;
 extern char **custom_environment;
-int set_custom_environment_variable(char **args);
-int unset_custom_environment_variable(char **args);
-char *get_full_executable_path(const char *command);
-void print_custom_environment(void);
-int change_working_directory(char *path);
+
+/**
+ * struct CustomEnvVar - Structure to represent an environment variable.
+ * @name: The custom environment variable name.
+ * @value: The value associated with the custom environment variable.
+ */
+struct CustomEnvVar
+{
+    char *name;
+    char *value;
+};
+
+void remove_comments(char *input);
+void set_custom_environment_variable(const char *variable, const char *value);
+void unset_custom_environment_variable(const char *variable, const char *program_name);
+int custom_setenv(const char *name, const char *value, int overwrite);
+int custom_unsetenv(const char *name);
+char *int_to_str(int num);
+void display_custom_prompt(void);
+void exit_shell(char **args);
+void show_custom_environment(void);
+int execute_custom_command(const char *program_name, const char *command, char *args[]);
+void tokenize_input_line(char *input, char **command, char *args[], int *num_args);
+void execute_command_in_custom_path(const char *program_name, const char *command, char *args[]);
+int read_custom_input_line(char **input, size_t *input_length, const char *program_name);
+void change_directory_custom(char *args[]);
+void copy_custom_string(char *destination, const char *source);
+int compare_strings(const char *str1, const char *str2);
+int custom_atoi(const char *string);
+size_t custom_strcspn(const char *str, const char *str2);
+size_t custom_strlen(const char *str);
+char *substring(const char *long_string, const char *single);
+int compare_strings_n(const char *str1, const char *str2, size_t n);
+char *concat_strings(char *destination, const char *source);
+char *duplicate_string(const char *string);
+void execute_individual_custom_command(char *program_name, char *command, char *args[]);
+char *handle_custom_variables(const char *input, const char *program_name, pid_t pid);
+char *find_custom_path(const char *command);
+void process_custom_command(const char *command, char **args, int num_args, const char *program_name);
+char *custom_strchr(const char *str, int c);
+char *custom_strncpy(char *dest, const char *src, size_t n);
+char *custom_strstr(const char *haystack, const char *needle);
 
 #endif
