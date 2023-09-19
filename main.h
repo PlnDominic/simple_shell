@@ -1,5 +1,5 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef CUSTOM_SHELL_H
+#define CUSTOM_SHELL_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,26 +10,26 @@
 #include <errno.h>
 #include <pwd.h>
 
-#define MAX_COMMAND_LENGTH 1024
-#define MAX_ARGUMENTS 64
+#define MAX_CMD_LENGTH 1024
+#define MAX_ARGS 64
 #define MAX_ENV_VARS 1000
-#define PATH_DELIMITER ":"
+#define PATH_SEPARATOR ":"
 
-void execute_command(const char * const args[]);
-int _strcmp(char *s1, char *s2);
-int _strlen(const char *s);
-ssize_t my_getline(char *input, size_t max_length);
-char *get_full_path(const char *command);
-char *_strcpy(char *dest, const char *src);
-char *_strcat(char *dest, const char *src);
-void handle_exit(char **input);
-int _atoi(char *s);
-int _strncmp(const char *str1, const char *str2, size_t n);
-extern char **environ;
-int setenv_command(char **args);
-int unsetenv_command(char **args);
-char *get_full_path(const char *command);
-void print_environment(void);
-int change_directory(char *path);
+void execute_custom_command(const char * const arguments[]);
+int custom_strcmp(char *str1, char *str2);
+int custom_strlen(const char *str);
+ssize_t custom_getline(char *input, size_t max_length);
+char *get_full_executable_path(const char *command);
+char *custom_strcpy(char *destination, const char *source);
+char *custom_strcat(char *destination, const char *source);
+void handle_exit_command(char **input);
+int custom_atoi(char *str);
+int custom_strncmp(const char *str1, const char *str2, size_t n);
+extern char **custom_environment;
+int set_custom_environment_variable(char **args);
+int unset_custom_environment_variable(char **args);
+char *get_full_executable_path(const char *command);
+void print_custom_environment(void);
+int change_working_directory(char *path);
 
 #endif

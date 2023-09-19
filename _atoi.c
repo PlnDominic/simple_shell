@@ -1,75 +1,54 @@
-#include "shell.h"
+#include "my_shell.h"
 
 /**
- *  * Check if the shell is in interactive mode.
- *   *
- *    * @param info: A pointer to a structure containing shell information.
- *     * @return 1 if the shell is in interactive mode, 0 otherwise.
- *      */
-int isInteractive(info_t *info) {
-	    return (isatty(STDIN_FILENO) && info->readfd <= 2);
+ * remove_shell_comments - Remove all text after
+ * the '#' symbol in the input line.
+ * @input_line: The input line to process.
+ */
+void remove_shell_comments(char *input_line)
+{
+    char *comment_start = strchr(input_line, '#');
+
+    if (comment_start != NULL)
+    {
+        *comment_start = '\0';
+    }
 }
 
 /**
- *  * Check if a character is a delimiter.
- *   *
- *    * @param c: The character to check.
- *     * @param delim: The delimiter string.
- *      * @return 1 if the character is a delimiter, 0 if not.
- *       */
-int isDelimiter(char c, char *delim) {
-	    while (*delim) {
-		            if (*delim++ == c) {
-				                return 1;
-						        }
-			        }
-	        return 0;
+ * main - Entry point for a simple shell program
+ * @argument_count: The number of arguments passed to the program (unused)
+ * @argument_vector: An array of strings containing the program name and arguments
+ *
+ * Return: Always 0 to indicate successful execution.
+ */
+int main(int __attribute__((unused)) argument_count, char *argument_vector[])
+{
+    char *input_line = NULL, *command, *arguments[MAX_INPUT_LENGTH];
+    size_t input_length = 0;
+    int num_arguments;
+    char *program_name = argument_vector[0];
+
+    if (program_name == NULL)
+        program_name = argument_vector[0];
+    else
+        program_name++;
+    while (1)
+    {
+        display_shell_prompt();
+        if (!read_input_line(&input_line, &input_length, program_name))
+            break;
+        remove_shell_comments(input_line);
+        if (input_line[0] == '\0')
+        {
+            free(input_line);
+            continue;
+        }
+        tokenize_input_line(input_line, &command, arguments, &num_arguments);
+        if (command == NULL)
+            continue;
+        execute_shell_command(command, arguments, num_arguments, program_name);
+    }
+    free(input_line);
+    return (0);
 }
-
-/**
- *  * Check if a character is alphabetic.
- *   *
- *    * @param c: The character to check.
- *     * @return 1 if the character is alphabetic, 0 if not.
- *      */
-int isAlphabetic(int c) {
-	    if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) {
-		            return 1;
-			        } else {
-					        return 0;
-						    }
-}
-
-/**
- *  * Convert a string to an integer.
- *   *
- *    * @param s: The string to be converted.
- *     * @return 0 if there are no numbers in the string; otherwise, return the converted number.
- *      */
-int stringToInteger(char *s) {
-	    int i, sign = 1, flag = 0, output;
-	        unsigned int result = 0;
-
-		    for (i = 0; s[i] != '\0' && flag != 2; i++) {
-			            if (s[i] == '-') {
-					                sign *= -1;
-							        }
-
-				            if (s[i] >= '0' && s[i] <= '9') {
-						                flag = 1;
-								            result *= 10;
-									                result += (s[i] - '0');
-											        } else if (flag == 1) {
-													            flag = 2;
-														            }
-					        }
-
-		        if (sign == -1) {
-				        output = -result;
-					    } else {
-						            output = result;
-							        }
-
-			    return output;
-}
-
