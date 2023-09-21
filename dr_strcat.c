@@ -1,6 +1,6 @@
 #include "dr_shell.h"
 /**
- * our_strcat - concatenates two strings
+ * dr_strcat - concatenates two strings
  * @final_str: string to append to
  * @str_to: string to add
  *
