@@ -1,7 +1,7 @@
 # SIMPLE SHELL PROJECT         
 
 # AUTHORS
-Dominic Kudom
+Dominic Kudom \n
 Rosina Atto
 
 
