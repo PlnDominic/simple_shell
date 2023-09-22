@@ -17,7 +17,7 @@ int hsh(info_t *info, char **av)
 		clear_info(info);
 		if (interactive(info))
 			_puts("$ ");
-		_eputchar(BUF_FLUSH);
+		dr_putchar(BUF_FLUSH);
 		r = get_input(info);
 		if (r != -1)
 		{
@@ -27,7 +27,7 @@ int hsh(info_t *info, char **av)
 				find_cmd(info);
 		}
 		else if (interactive(info))
-			_putchar('\n');
+			dr_putchar('\n');
 		free_info(info, 0);
 	}
 	write_history(info);
@@ -86,7 +86,7 @@ int find_builtin(info_t *info)
 void find_cmd(info_t *info)
 {
 	char *path = NULL;
-	int i, k;
+	int j, k;
 
 	info->path = info->argv[0];
 	if (info->linecount_flag == 1)
@@ -94,8 +94,8 @@ void find_cmd(info_t *info)
 		info->line_count++;
 		info->linecount_flag = 0;
 	}
-	for (i = 0, k = 0; info->arg[i]; i++)
-		if (!is_delim(info->arg[i], " \t\n"))
+	for (j = 0, k = 0; info->arg[j]; j++)
+		if (!is_delim(info->arg[j], " \t\n"))
 			k++;
 	if (!k)
 		return;
