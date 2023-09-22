@@ -107,6 +107,11 @@ typedef struct builtin_s
 	int (*f)(data_shell *datash);
 } builtin_t;
 
+int interactive(info_t *info);
+int is_delimeter(char s, char *delim);
+int _isalpha(int s);
+int _atoi(char *s);
+
 /* aux_lists.c */
 sep_list *add_sep_node_end(sep_list **head, char sep);
 void free_sep_list(sep_list **head);
