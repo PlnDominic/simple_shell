@@ -138,7 +138,7 @@ int bfree(void **);
 int interactive(info_t *);
 int is_delim(char, char *);
 int _isalpha(int);
-int _atoi(char *);
+int _apt(char *);
 char *_strchr(char *, char);
 char **strtow(char *, char *);
 char *convert_number(long int, int, int);
