@@ -139,7 +139,7 @@ int _isdigit(const char *s);
 /* aux_str3.c */
 void rev_string(char *s);
 
-/*syntax_error.c */
+/*syntax_error.c */ 
 int repeated_character(char *input, int j);
 int error_sep_op(char *input, int i, char last);
 int first_character(char *input, int *j);
