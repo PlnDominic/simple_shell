@@ -143,7 +143,7 @@ char *_strchr(char *, char);
 char **strtow(char *, char *);
 char *convert_number(long int, int, int);
 void remove_comments(char *);
-int exit(info_t *);
+int ext(info_t *);
 int cd(info_t *);
 int help(info_t *);
 int _myhistory(info_t *);
