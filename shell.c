@@ -2,7 +2,6 @@
 
 /**
  * free_data - frees the data structure
- *
  * @datash: data structure
  * Return: no return 
  */
@@ -21,7 +20,6 @@ void free_data(data_shell *datash)
 
 /**
  * set_data - Initialize data structure
- *
  * @datash: data structure
  * @av: argument vector varible
  * Return: no return

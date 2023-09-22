@@ -139,10 +139,10 @@ int _isdigit(const char *s);
 /* aux_str3.c */
 void rev_string(char *s);
 
-/* check_syntax_error.c */
-int repeated_char(char *input, int i);
+/*syntax_error.c */
+int repeated_character(char *input, int j);
 int error_sep_op(char *input, int i, char last);
-int first_char(char *input, int *i);
+int first_character(char *input, int *j);
 void print_syntax_error(data_shell *datash, char *input, int i, int bool);
 int check_syntax_error(data_shell *datash, char *input);
 
