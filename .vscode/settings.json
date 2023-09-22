@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "dr_shell.h": "c"
+        "dr_shell.h": "c",
+        "change_directory": "c"
     }
 }
