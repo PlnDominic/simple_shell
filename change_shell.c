@@ -20,7 +20,7 @@ int change_shell(data_shell *datash)
 		isddash = _strcmp("--", i);
 	}
 
-	if (i == NULL || !ishome || !ishome2 || !isddash)
+	if (i == NULL || !ishome || !ishome_a || !isddash)
 	{
 		change_to_home(datash);
 		return (1);
