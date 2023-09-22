@@ -159,7 +159,7 @@ int check_syntax_error(data_shell *datash, char *input)
 	int f_char = 0;
 	int i = 0;
 
-	f_char = first_char(input, &begin);
+	f_char = first_character(input, &begin);
 	if (f_char == -1)
 	{
 		print_syntax_error(datash, input, begin, 0);
