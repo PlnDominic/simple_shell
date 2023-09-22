@@ -8,17 +8,17 @@
  */
 int _erratoi(char *s)
 {
-	int i = 0;
+	int j = 0;
 	unsigned long int result = 0;
 
 	if (*s == '+')
 		s++;  /* TODO: why does this make main return 255? */
-	for (i = 0;  s[i] != '\0'; i++)
+	for (j = 0;  s[j] != '\0'; j++)
 	{
-		if (s[i] >= '0' && s[i] <= '9')
+		if (s[j] >= '0' && s[j] <= '9')
 		{
 			result *= 10;
-			result += (s[i] - '0');
+			result += (s[j] - '0');
 			if (result > INT_MAX)
 				return (-1);
 		}
@@ -29,8 +29,8 @@ int _erratoi(char *s)
 }
 
 /**
- * print_error - prints an error message
- * @info: the parameter & return info struct
+ * print_error - error message are printed
+ * @info: the parameter & return info structure
  * @estr: string containing specified error type
  * Return: 0 if no numbers in string, converted number otherwise
  *        -1 on error
@@ -48,7 +48,7 @@ void print_error(info_t *info, char *estr)
 
 /**
  * print_d - function prints a decimal (integer) number (base 10)
- * @input: the input
+ * @input: user input
  * @fd: the filedescriptor to write to
  *
  * Return: number of characters printed
@@ -86,10 +86,10 @@ int print_d(int input, int fd)
 }
 
 /**
- * convert_number - converter function, a clone of itoa
+ * convert_number - converter function
  * @num: number
  * @base: base
- * @flags: argument flags
+ * @flags: argument flags varibales 
  *
  * Return: string
  */
@@ -129,12 +129,12 @@ char *convert_number(long int num, int base, int flags)
  */
 void remove_comments(char *buf)
 {
-	int i;
+	int j;
 
-	for (i = 0; buf[i] != '\0'; i++)
-		if (buf[i] == '#' && (!i || buf[i - 1] == ' '))
+	for (j = 0; buf[j] != '\0'; j++)
+		if (buf[j] == '#' && (!j || buf[j - 1] == ' '))
 		{
-			buf[i] = '\0';
+			buf[j] = '\0';
 			break;
 		}
 }
